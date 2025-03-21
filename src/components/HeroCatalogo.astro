@@ -2,7 +2,7 @@
 import { cartItems } from "@/store/cart";
 ---
 
-<header class="sticky top-0 left-0 w-full bg-white p-6 border-b border-gray-200 z-50">
+<header class="sticky top-0 left-0 w-full bg-white p-3.5 sm:p-5 border-b border-gray-200 z-50">
   <div
     class="absolute top-0 left-0 w-full h-1 bg-gradient-to-t from-gray-200 to-red-600"
   >
@@ -24,17 +24,26 @@ import { cartItems } from "@/store/cart";
           >
             0
           </span>
-          <img src="/svg/carrito.svg" alt="IconCarrito" class="w-8 h-8" />
+          <img src="/svg/carrito.svg" alt="IconCarrito" class="w-7 h-7" />
         </a>
       </li>
     </ul>
   </nav>
 </header>
 
+<div class="bg-gray-950 text-white p-1 max-sm:block sm:hidden">
+  <div class="flex justify-between items-center ml-2">
+    <h2 class="font-bold">Filtrar por</h2>
+    <div class="p-1">
+      <img src="/svg/Filtro.svg" alt="IconFiltro" class="w-8 h-8 invert" />
+    </div>    
+  </div>
+</div>
+
+
 <script>
   import { cartItems } from "@/store/cart";
 
-  // Actualizar el contador del carrito
   const cartCount = document.querySelector(".cart-count");
   cartItems.subscribe((items) => {
     if (cartCount) {
