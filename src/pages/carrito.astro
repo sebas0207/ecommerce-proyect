@@ -1,0 +1,20 @@
+---
+import HeroCarrito from "../components/HeroCarrito.astro";
+import Layout from "../layouts/Layout.astro";
+import CardComponent from "../components/CardComponent.jsx";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout>
+  <HeroCarrito />
+  <section class="bg-gray-50 py-12 sm:py-16 lg:py-20">
+    <div class="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl">
+        <CardComponent client:load />
+      </div>
+    </div>
+  </section>
+  <div class="mt-12 sm:mt-16 lg:mt-20">
+    <Footer />
+  </div>
+</Layout>
