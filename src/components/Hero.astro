@@ -1,0 +1,41 @@
+---
+import svgIcon from "./public/svg/carrito.svg";
+---
+
+<div
+  class="bg-cover bg-center absolute top-0 left-0 right-0 z-0 p-2 lg:w-full"
+  style="background-image: url('./images/fondo.webp'); min-height: 90vh; "
+>
+  <header class="flex items-center justify-around p-4">
+    <div class="w-1/5 flex justify-end">
+      <a href="/catalogo" class="text-white text-lg font-medium">Catalogo</a>
+    </div>
+    <div class="flex-grow text-center">
+      <h1 class="text-white text-2xl font-bold">Logo</h1>
+    </div>
+    <div class="w-1/5 flex justify-start">
+      <a href="/carrito">
+        <span
+          class="relative top-1 left-6 bg-white text-black rounded-full w-4 h-4 flex items-center justify-center text-xs cart-count"
+        >
+          0
+        </span>
+        <img src={svgIcon.src} alt="IconCarrito" class="w-8 h-8 invert" />
+      </a>
+    </div>
+  </header>
+</div>
+
+<script>
+  import { cartItems } from "../store/cart";
+
+  // Actualizar el contador del carrito
+  const cartCount = document.querySelector(".cart-count");
+  cartItems.subscribe((items) => {
+    if (cartCount) {
+      cartCount.textContent = items
+        .reduce((total, item) => total + item.quantity, 0)
+        .toString();
+    }
+  });
+</script>

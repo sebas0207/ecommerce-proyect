@@ -1,0 +1,55 @@
+---
+import Image from "./Image.astro";
+---
+
+<section class="min-h-[90vh] flex items-center justify-center p-4">
+  <div class="mx-auto flex flex-col md:flex-row items-center w-2/3 md:w-4/5 md:gap-10 lg:gap-4 xl:gap-0 xl:p-7">
+    <div class="md:w-1/2 space-y-4 xl:p-2 md:ml-0 xl:ml-20">
+      <h1 class="text-5xl md:text-7xl font-bold relative pb-2 gradient-text">
+        Nike x AirMax
+      </h1>
+      <div class="relative xl:p-2">
+        <h3 class="text-lg font-medium text-white">
+          La mejor colección de zapatillas Nike <span class="gradient-text"
+            >AirMax</span
+          >
+        </h3>
+      </div>
+      <div class="flex space-x-4 xl:p-2">
+        <button
+          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-600 via-red-500 to-rose-200 group-hover:from-red-600 group-hover:via-red-400 group-hover:to-rose-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-500"
+        >
+          <span
+            class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent"
+          >
+            <a href="/catalogo">Comprar</a>
+          </span>
+        </button>
+      </div>
+    </div>
+    <Image />
+  </div>
+</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #dc2626, #ef4444, #fecdd3);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-animation 3s ease infinite;
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>

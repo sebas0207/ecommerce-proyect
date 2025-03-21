@@ -1,0 +1,50 @@
+---
+
+---
+
+<header class="w-full bg-white p-6 border-b border-gray-200">
+  <div
+    class="absolute top-0 left-0 w-full h-1 bg-gradient-to-t from-gray-200 to-red-600"
+  >
+  </div>
+  <nav>
+    <ul class="flex items-center justify-between max-w-6xl mx-auto px-4">
+      <li>
+        <a href="/">
+          <span class="text-red-500 mr-1">←</span> Volver
+        </a>
+      </li>
+      <li>
+        <h1 class="text-gray-900 text-2xl font-bold relative">Logo</h1>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  import { cartItems } from "../store/cart";
+
+  // Actualizar el contador del carrito
+  const updateCartCount = () => {
+    const cartCount = document.querySelector(".cart-count");
+    if (cartCount) {
+      const items = JSON.parse(localStorage.getItem("cartItems") || "[]");
+      cartCount.textContent = items
+        .reduce((total: any, item: any) => total + item.quantity, 0)
+        .toString();
+    }
+  };
+
+  // Update on page load
+  updateCartCount();
+
+  // Also subscribe to store changes
+  cartItems.subscribe((items) => {
+    const cartCount = document.querySelector(".cart-count");
+    if (cartCount) {
+      cartCount.textContent = items
+        .reduce((total, item) => total + item.quantity, 0)
+        .toString();
+    }
+  });
+</script>
