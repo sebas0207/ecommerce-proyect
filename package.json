@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/react": "^4.2.1",
     "@nanostores/react": "^0.8.4",
+    "@tailwindcss/vite": "^4.0.15",
     "astro": "^5.4.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
