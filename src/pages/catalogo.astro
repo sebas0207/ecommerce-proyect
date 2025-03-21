@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroCatalogo from "@/components/HeroCatalogo.astro";
+import Aside from "@/components/Aside.astro";
+import ProductGrid from "@/components/ProductGrid";
+import { products } from "@/store/products";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout>
+  <HeroCatalogo class:list={{ someClass: true }} />
+  <div class="flex mt-6">
+    <Aside />
+    <div class="flex-1 mt-6">
+      <ProductGrid products={products} client:load />
+    </div>
+  </div>
+  <Footer />
+</Layout>
