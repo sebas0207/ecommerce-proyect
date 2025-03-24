@@ -1,5 +1,8 @@
 ---
 import Image from "./Image.astro";
+
+import ProductGrid from "../components/ProductGrid";
+
 ---
 
 <section class="min-h-[90vh] flex items-center justify-center p-4">
@@ -17,12 +20,12 @@ import Image from "./Image.astro";
       </div>
       <div class="flex space-x-4 xl:p-2">
         <button
-          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-600 via-red-500 to-rose-200 group-hover:from-red-600 group-hover:via-red-400 group-hover:to-rose-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-500"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-600 via-red-500 to-rose-200 group-hover:from-red-600 group-hover:via-red-400 group-hover:to-rose-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-500"
         >
           <span
             class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent"
           >
-            <a href="/catalogo">Comprar</a>
+            <a href="/catalogo?producto=9">Comprar</a>
           </span>
         </button>
       </div>
