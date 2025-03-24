@@ -21,12 +21,13 @@
         <p class="text-gray-600">Recibe las últimas tendencias y ofertas exclusivas.</p>
         <form class="flex gap-2">
           <input 
+            id="emailInput"
             type="email" 
             placeholder="Tu email" 
             class="flex-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-red-500"
           />
-          <button class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-            Suscribir
+          <button class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors" id="suscribeteButton">
+            Suscríbete
           </button>
         </form>
       </div>
@@ -110,7 +111,7 @@
       </div>
     </div>
     <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-gray-600">© 2025 NeonVibe. Todos los derechos reservados.</p>
+      <p class="text-gray-600"> 2025 NeonVibe. Todos los derechos reservados.</p>
       <div class="flex gap-6">
         <a href="#" class="text-gray-600 hover:text-red-600 transition-colors">Términos</a>
         <a href="#" class="text-gray-600 hover:text-red-600 transition-colors">Privacidad</a>
@@ -119,3 +120,17 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const suscribeteButton = document.getElementById('suscribeteButton');
+  const emailInput = document.getElementById('emailInput') as HTMLInputElement;
+
+  if(suscribeteButton && emailInput){
+    suscribeteButton.addEventListener('click' , () => {
+      if(emailInput.value.trim() === ""){
+        alert("el email esta vacio 😤");
+      }
+      alert("Gracias por tu suscripción ❤️");
+    })
+  }
+</script>
