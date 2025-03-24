@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { Product } from "../types";
 
 interface ProductGridProps {
@@ -5,11 +6,25 @@ interface ProductGridProps {
 }
 
 export default function ProductGrid({ products }: ProductGridProps) {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("producto") || localStorage.getItem("productoId");
+
+    if (productId) {
+      const productElement = document.getElementById(productId);
+      if (productElement) {
+        productElement.scrollIntoView({ behavior: "smooth" });
+      }
+      localStorage.removeItem("productoId");
+    }
+  }, []);
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 md:ml-80 md:mr-5 mb-8 px-4 sm:px-0 max-w-5xl md:max-w-none mx-auto">
       {products.map((product) => (
         <div
           key={product.id}
+          id={String(product.id)} // 👈 Asegurar que tenga un ID
           className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow w-full"
         >
           {product.soldOut && (
