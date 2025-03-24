@@ -130,6 +130,15 @@ export default function AppleInvites() {
     });
   };
 
+  const alertProduct = (event: Event) => {  
+    try {
+      handleAddToCart(event);
+      alert("Producto agregado al carrito 🛒");
+    } catch (error) {
+      alert("Hubo un error al agregar el producto. ❌");
+    }
+  };
+
 return (
   <div className="hidden md:block p-6 ">
     <div className="bg-gray-900 rounded-xl">
@@ -183,8 +192,8 @@ return (
                   </p>
                   {/* Button */}
                   <div className="text-center text-xs opacity-90">
-                    <button
-                      onClick={() => handleAddToCart(event)}
+                    <button                    
+                      onClick={() => alertProduct(event)}
                       className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs md:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-400 via-indigo-500 to-pink-200 group-hover:from-purple-400 group-hover:via-indigo-400 group-hover:to-pink-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 dark:focus:ring-indigo-500"
                     >
                       <span className="relative px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
