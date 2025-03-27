@@ -2,6 +2,8 @@
 import "../styles/global.css";
 const { titulo = "NeonVibe" } = Astro.props;
 
+import '@fontsource-variable/onest';
+
 import { ClientRouter } from "astro:transitions";
 ---
 
@@ -18,3 +20,9 @@ import { ClientRouter } from "astro:transitions";
     <slot />
   </body>
 </html>
+
+<style is:global>
+  html{
+    font-family: 'Onest Variable', sans-serif;
+  }
+</style>
