@@ -122,15 +122,13 @@
 </footer>
 
 <script>
-  const suscribeteButton = document.getElementById('suscribeteButton');
-  const emailInput = document.getElementById('emailInput') as HTMLInputElement;
-
-  if(suscribeteButton && emailInput){
-    suscribeteButton.addEventListener('click' , () => {
-      if(emailInput.value.trim() === ""){
-        alert("el email esta vacio 😤");
-      }
-      alert("Gracias por tu suscripción ❤️");
-    })
-  }
+  document.getElementById('suscribeteButton').addEventListener('click', function() {
+    event.preventDefault();
+    const email = document.getElementById('emailInput').value;
+    if (email) {
+      alert('Gracias por suscribirte 💌');
+    } else {
+      alert('Por favor, ingresa un email ❌');
+    }
+  });
 </script>
