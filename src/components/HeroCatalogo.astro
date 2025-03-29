@@ -2,7 +2,9 @@
 import { cartItems } from "@/store/cart";
 ---
 
-<header class="sticky top-0 left-0 w-full bg-white p-3 sm:p-5 border-b border-gray-200 z-50">
+<header
+  class="sticky top-0 left-0 w-full bg-white p-3 sm:p-5 border-b border-gray-200 z-50"
+>
   <div
     class="absolute top-0 left-0 w-full h-1 bg-gradient-to-t from-gray-200 to-red-600"
   >
@@ -16,7 +18,7 @@ import { cartItems } from "@/store/cart";
       </li>
       <li>
         <a href="/">
-          <img src="./images/NeonVibe.webp" alt="NeonVibe Logo" width="90px">
+          <img src="./images/NeonVibe.webp" alt="NeonVibe Logo" width="90px" />
         </a>
       </li>
       <li class="relative flex items-center">
@@ -37,11 +39,63 @@ import { cartItems } from "@/store/cart";
   <div class="flex justify-between items-center ml-2">
     <h2 class="font-bold">Filtrar por</h2>
     <div class="p-1">
-      <img src="/svg/Filtro.svg" alt="IconFiltro" class="w-8 h-8 invert" />
-    </div>    
+      <a href="#" id="filtro">
+        <img src="/svg/Filtro.svg" alt="IconFiltro" class="w-8 h-8 invert" />
+      </a>
+      <!-- Modal del filtro -->
+      <div
+        class="hidden fixed inset-0 bg-black z-50"
+        style="background: rgba(0, 0, 0, 0.5);"
+        id="modal-filtro"
+      >
+        <div
+          class="fixed bg-white w-[300px] h-[500px]
+           top-1/2 left-1/2 transform -translate-x-1/2
+           -translate-y-1/2 rounded-lg p-4 z-[101]"
+        >
+          <div class="flex flex-col items-center h-full gap-2.5 relative">
+            <!-- Contenido del modal -->
+            <select
+              id="filtro-genero"
+              class="w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none shadow-sm transition-all duration-200 ease-in-out"
+            >
+              <option value="">Género</option>
+              <option value="1">Hombre</option>
+              <option value="2">Mujer</option>
+              <option value="3">Unisex</option>
+            </select>
+            <select
+              id="filtro-marca"
+              class="w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none shadow-sm transition-all duration-200 ease-in-out"
+            >
+              <option value="">Marca</option>
+              <option value="1">Nike</option>
+              <option value="2">Adidas</option>
+              <option value="3">Louis Vuitton</option>
+            </select>
+            <select
+              id="filtro-precio"
+              class="w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none shadow-sm transition-all duration-200 ease-in-out"
+            >
+              <option value="">Precio</option>
+              <option value="1">€0 - €100</option>
+              <option value="2">€100 - €200</option>
+              <option value="3">€200+</option>
+            </select>
+            <!--- Botón de cerrar modal -->
+            <button
+              class="bg-gray-600 top-2 text-gray-50 rounded-sm p-2 mt-auto w-full"
+              id="cerrar-modal"
+              onclick="document.getElementById('modal-filtro').classList.add('hidden')"
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 
 <script>
   import { cartItems } from "@/store/cart";
@@ -54,4 +108,21 @@ import { cartItems } from "@/store/cart";
         .toString();
     }
   });
+
+  // abrir una modal al hacer click en el icono de filtro
+  const filtro = document
+    .getElementById("filtro")
+    ?.addEventListener("click", (e) => {
+      e.preventDefault();
+      const modal = document.getElementById("modal-filtro");
+      if (modal) {
+        modal.classList.toggle("hidden");
+      }
+      //si da click fuera de la modal se cierra
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.classList.add("hidden");
+        }
+      });
+    });
 </script>
