@@ -120,7 +120,7 @@ import { cartItems } from "@/store/cart";
       }
       //si da click fuera de la modal se cierra
       window.addEventListener("click", (event) => {
-        if (event.target === modal) {
+        if (event.target === modal && modal) {
           modal.classList.add("hidden");
         }
       });
