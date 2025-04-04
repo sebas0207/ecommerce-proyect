@@ -26,6 +26,7 @@
 <script>
   import { cartItems } from "../store/cart";
 
+  document.addEventListener('DOMContentLoaded', () => {
   // Actualizar el contador del carrito
   const updateCartCount = () => {
     const cartCount = document.querySelector(".cart-count");
@@ -48,5 +49,6 @@
         .reduce((total, item) => total + item.quantity, 0)
         .toString();
     }
+  });
   });
 </script>
