@@ -5,19 +5,41 @@ export interface CartItem {
   title: string;
   image: string;
   quantity: number;
-  price: number; // Asegúrate de que price esté incluido
+  price: number;
 }
 
-// Initialize the store with items from localStorage if available
-const storedItems = typeof window !== "undefined" ? localStorage.getItem("cartItems") : null;
-export const cartItems = atom<CartItem[]>(storedItems ? JSON.parse(storedItems) : []);
+// Función para obtener los items del localStorage
+const getStoredItems = () => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const storedItems = localStorage.getItem("cartItems");
+    return storedItems ? JSON.parse(storedItems) : [];
+  } catch (error) {
+    console.error('Error loading cart items:', error);
+    return [];
+  }
+};
+
+// Initialize the store with items from localStorage
+export const cartItems = atom<CartItem[]>(getStoredItems());
 
 // Subscribe to store changes and update localStorage
-cartItems.subscribe((value) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("cartItems", JSON.stringify(value));
-  }
-});
+if (typeof window !== 'undefined') {
+  cartItems.subscribe((value) => {
+    try {
+      localStorage.setItem("cartItems", JSON.stringify(value));
+      // Actualizar el contador en todas las instancias
+      document.querySelectorAll('.cart-count').forEach(counter => {
+        if (counter instanceof HTMLElement) {
+          const itemCount = value.reduce((total, item) => total + item.quantity, 0);
+          counter.textContent = itemCount.toString();
+        }
+      });
+    } catch (error) {
+      console.error('Error saving cart items:', error);
+    }
+  });
+}
 
 export function addToCart(item: Omit<CartItem, "quantity">) {
   const currentItems = cartItems.get();
