@@ -49,45 +49,134 @@ import { cartItems } from "@/store/cart";
         id="modal-filtro"
       >
         <div
-          class="fixed bg-white w-[300px] h-[500px]
-           top-1/2 left-1/2 transform -translate-x-1/2
-           -translate-y-1/2 rounded-lg p-4 z-[101]"
+          class="fixed bg-white w-[300px] h-full
+           top-0 right-0 bottom-0 rounded-l-lg shadow-xl z-[101]
+           transition-transform duration-300 ease-in-out"
         >
-          <div class="flex flex-col items-center h-full gap-2.5 relative">
+          <div class="flex flex-col h-full gap-3 relative p-5">
+            <!-- Botón de cerrar con SVG -->
+            <button
+              class="absolute top-4 left-4 text-gray-700 hover:text-gray-900 transition-colors"
+              id="cerrar-x"
+              aria-label="Cerrar"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
             <!-- Contenido del modal -->
-            <select
-              id="filtro-genero"
-              class="w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none shadow-sm transition-all duration-200 ease-in-out"
-            >
-              <option value="">Género</option>
-              <option value="1">Hombre</option>
-              <option value="2">Mujer</option>
-              <option value="3">Unisex</option>
-            </select>
-            <select
-              id="filtro-marca"
-              class="w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none shadow-sm transition-all duration-200 ease-in-out"
-            >
-              <option value="">Marca</option>
-              <option value="1">Nike</option>
-              <option value="2">Adidas</option>
-              <option value="3">Louis Vuitton</option>
-            </select>
-            <select
-              id="filtro-precio"
-              class="w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none shadow-sm transition-all duration-200 ease-in-out"
-            >
-              <option value="">Precio</option>
-              <option value="1">€0 - €100</option>
-              <option value="2">€100 - €200</option>
-              <option value="3">€200+</option>
-            </select>
+            <h3 class="text-gray-800 font-bold text-xl self-center mt-4 mb-2">
+              Filtrar por
+            </h3>
+
+            <div class="space-y-4 w-full mt-2">
+              <div class="relative">
+                <select
+                  id="filtro-genero"
+                  class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-700
+                  shadow-sm transition-all duration-200 ease-in-out"
+                >
+                  <option value="">Género</option>
+                  <option value="1">Hombre</option>
+                  <option value="2">Mujer</option>
+                  <option value="3">Unisex</option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="relative">
+                <select
+                  id="filtro-marca"
+                  class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-700
+                  shadow-sm transition-all duration-200 ease-in-out"
+                >
+                  <option value="">Marca</option>
+                  <option value="1">Nike</option>
+                  <option value="2">Adidas</option>
+                  <option value="3">Louis Vuitton</option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="relative">
+                <select
+                  id="filtro-precio"
+                  class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-700
+                  shadow-sm transition-all duration-200 ease-in-out"
+                >
+                  <option value="">Precio</option>
+                  <option value="1">€0 - €100</option>
+                  <option value="2">€100 - €200</option>
+                  <option value="3">€200+</option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
             <!--- Botón de cerrar modal -->
             <button
-              class="bg-gray-600 top-2 text-gray-50 rounded-sm p-2 mt-auto w-full"
+              class="bg-black text-white rounded-lg p-3 mt-auto w-full
+              transition-colors duration-200 font-medium shadow-md"
               id="cerrar-modal"
             >
-              Aceptar
+              Aplicar filtros
             </button>
           </div>
         </div>
@@ -105,12 +194,14 @@ import { cartItems } from "@/store/cart";
     const cartCount = document.querySelector(".cart-count");
     if (cartCount) {
       try {
-        const items = JSON.parse(localStorage.getItem("cartItems") || "[]") as CartItem[];
+        const items = JSON.parse(
+          localStorage.getItem("cartItems") || "[]"
+        ) as CartItem[];
         cartCount.textContent = items
           .reduce((total: number, item: CartItem) => total + item.quantity, 0)
           .toString();
       } catch (error) {
-        console.error('Error updating cart count:', error);
+        console.error("Error updating cart count:", error);
       }
     }
   };
@@ -123,12 +214,12 @@ import { cartItems } from "@/store/cart";
         cartItems.set(JSON.parse(storedItems) as CartItem[]);
       }
     } catch (error) {
-      console.error('Error initializing cart store:', error);
+      console.error("Error initializing cart store:", error);
     }
   };
 
   // Actualizar cuando el DOM está listo y en cada navegación
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener("astro:page-load", () => {
     initializeCartStore();
     updateCartCount();
 
@@ -142,4 +233,84 @@ import { cartItems } from "@/store/cart";
       }
     });
   });
+
+  // Función para hidratar los elementos del filtro
+  function hidratarFiltro() {
+    const filtro = document.getElementById("filtro");
+    const modalFiltro = document.getElementById("modal-filtro");
+    const cerrarModal = document.getElementById("cerrar-modal");
+    const cerrarX = document.getElementById("cerrar-x");
+    const modalContent = modalFiltro?.querySelector("div");
+
+    if (filtro && modalFiltro && cerrarModal && cerrarX && modalContent) {
+      // Primero eliminamos los event listeners anteriores para evitar duplicados
+      filtro.removeEventListener("click", abrirModalFiltro);
+      cerrarModal.removeEventListener("click", cerrarModalFiltro);
+      cerrarX.removeEventListener("click", cerrarModalFiltro);
+      modalFiltro.removeEventListener("click", cerrarModalFiltroBackground);
+
+      // Luego añadimos los nuevos
+      filtro.addEventListener("click", abrirModalFiltro);
+      cerrarModal.addEventListener("click", cerrarModalFiltro);
+      cerrarX.addEventListener("click", cerrarModalFiltro);
+      modalFiltro.addEventListener("click", cerrarModalFiltroBackground);
+
+      // Evitar que clics dentro del contenido del modal lo cierren
+      modalContent.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+    }
+  }
+
+  // Funciones para manejar los eventos
+  function abrirModalFiltro(event: MouseEvent) {
+    event.preventDefault();
+    const modalFiltro = document.getElementById("modal-filtro");
+
+    if (modalFiltro) {
+      modalFiltro.classList.remove("hidden");
+    }
+
+    // animación para la entrada
+    setTimeout(() => {
+      const modalContent = modalFiltro.querySelector("div");
+      if (modalContent) {
+        modalContent.style.transform = "translateX(0)";
+      }
+    }, 10);
+  }
+
+  function cerrarModalFiltro() {
+    const modalFiltro = document.getElementById("modal-filtro");
+    const modalContent = modalFiltro.querySelector("div");
+
+    // Animación de salida
+    if (modalContent) {
+      modalContent.style.transform = "translateX(100%)";
+
+      // Esperar a que termine la animación antes de ocultar
+      setTimeout(() => {
+        modalFiltro.classList.add("hidden");
+        modalContent.style.transform = "";
+      }, 300);
+    } else {
+      modalFiltro.classList.add("hidden");
+    }
+  }
+
+  // Cerrar al hacer clic en el fondo
+  function cerrarModalFiltroBackground(event: MouseEvent) {
+    if (event.target === event.currentTarget) {
+      cerrarModalFiltro();
+    }
+  }
+
+  // Ejecutar cuando la página se carga inicialmente
+  document.addEventListener("DOMContentLoaded", hidratarFiltro);
+
+  // Para Astro View Transitions
+  document.addEventListener("astro:page-load", hidratarFiltro);
+
+  // Para capturar también después de que los componentes React se hayan montado
+  document.addEventListener("astro:after-swap", hidratarFiltro);
 </script>
