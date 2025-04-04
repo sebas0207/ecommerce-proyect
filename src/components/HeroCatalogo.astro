@@ -86,7 +86,6 @@ import { cartItems } from "@/store/cart";
             <button
               class="bg-gray-600 top-2 text-gray-50 rounded-sm p-2 mt-auto w-full"
               id="cerrar-modal"
-              onclick="document.getElementById('modal-filtro').classList.add('hidden')"
             >
               Aceptar
             </button>
@@ -98,31 +97,49 @@ import { cartItems } from "@/store/cart";
 </div>
 
 <script>
-  import { cartItems } from "@/store/cart";
+  import { cartItems } from "../store/cart";
+  import type { CartItem } from "../store/cart";
 
-  const cartCount = document.querySelector(".cart-count");
-  cartItems.subscribe((items) => {
+  // Función para actualizar el contador
+  const updateCartCount = () => {
+    const cartCount = document.querySelector(".cart-count");
     if (cartCount) {
-      cartCount.textContent = items
-        .reduce((total, item) => total + item.quantity, 0)
-        .toString();
-    }
-  });
-
-  // abrir una modal al hacer click en el icono de filtro
-  const filtro = document
-    .getElementById("filtro")
-    ?.addEventListener("click", (e) => {
-      e.preventDefault();
-      const modal = document.getElementById("modal-filtro");
-      if (modal) {
-        modal.classList.toggle("hidden");
+      try {
+        const items = JSON.parse(localStorage.getItem("cartItems") || "[]") as CartItem[];
+        cartCount.textContent = items
+          .reduce((total: number, item: CartItem) => total + item.quantity, 0)
+          .toString();
+      } catch (error) {
+        console.error('Error updating cart count:', error);
       }
-      //si da click fuera de la modal se cierra
-      window.addEventListener("click", (event) => {
-        if (event.target === modal && modal) {
-          modal.classList.add("hidden");
-        }
-      });
+    }
+  };
+
+  // Función para inicializar el store con los items del localStorage
+  const initializeCartStore = () => {
+    try {
+      const storedItems = localStorage.getItem("cartItems");
+      if (storedItems) {
+        cartItems.set(JSON.parse(storedItems) as CartItem[]);
+      }
+    } catch (error) {
+      console.error('Error initializing cart store:', error);
+    }
+  };
+
+  // Actualizar cuando el DOM está listo y en cada navegación
+  document.addEventListener('astro:page-load', () => {
+    initializeCartStore();
+    updateCartCount();
+
+    // Suscribirse a cambios en el store
+    cartItems.subscribe((items) => {
+      const cartCount = document.querySelector(".cart-count");
+      if (cartCount) {
+        cartCount.textContent = items
+          .reduce((total: number, item: CartItem) => total + item.quantity, 0)
+          .toString();
+      }
     });
+  });
 </script>
