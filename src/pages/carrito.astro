@@ -2,7 +2,7 @@
 import HeroCarrito from "../components/HeroCarrito.astro";
 import Layout from "../layouts/Layout.astro";
 import CardComponent from "../components/CardComponent.jsx";
-import Footer from "@/components/Footer.astro";
+import Footer from "@/components/Footer.tsx";
 ---
 
 <Layout>
@@ -15,6 +15,6 @@ import Footer from "@/components/Footer.astro";
     </div>
   </section>
   <div class="mt-12 sm:mt-16 lg:mt-20">
-    <Footer />
+    <Footer client:load />
   </div>
 </Layout>

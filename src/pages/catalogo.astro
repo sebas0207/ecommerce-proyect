@@ -4,7 +4,7 @@ import HeroCatalogo from "@/components/HeroCatalogo.astro";
 import Aside from "@/components/Aside.astro";
 import ProductGrid from "@/components/ProductGrid";
 import { products } from "@/store/products";
-import Footer from "@/components/Footer.astro";
+import Footer from "@/components/Footer.tsx";
 ---
 
 <Layout>
@@ -15,5 +15,5 @@ import Footer from "@/components/Footer.astro";
       <ProductGrid products={products} client:load />
     </div>
   </div>
-  <Footer />
+  <Footer client:load />
 </Layout>
