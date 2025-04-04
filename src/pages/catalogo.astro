@@ -17,3 +17,12 @@ import Footer from "@/components/Footer.tsx";
   </div>
   <Footer client:load />
 </Layout>
+
+<style>
+  /*hacer que el html y el body tomen todo el ancho posible  */
+  @media (max-width: 376px) {
+    body {
+      width: 100% !important;
+    }
+  }
+</style>
