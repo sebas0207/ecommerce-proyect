@@ -114,7 +114,7 @@ export default function CartComponent() {
                               {item.title}
                             </h3>
                             <p className="mt-1 text-sm text-gray-500">
-                              36EU - 4US
+                              Size {item.size} EU
                             </p>
                           </div>
 
