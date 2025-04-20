@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useStore } from "@nanostores/react";
 import { cartItems } from "../store/cart";
 
 export default function SimulacionPago() {
@@ -11,6 +12,7 @@ export default function SimulacionPago() {
 
   const [estadoPago, setEstadoPago] = useState("");
   const [formularioEnviado, setFormularioEnviado] = useState(false);
+  const items = useStore(cartItems);
 
   const cambio = (e) => {
     actDatos({
@@ -19,7 +21,7 @@ export default function SimulacionPago() {
     });
   };
 
-  const enviarFormulario = (e) => {
+  const enviarFormulario = async (e) => {
     e.preventDefault();
 
     if (!datos.nombre || !datos.correo || !datos.telefono || !datos.direccion) {
@@ -32,6 +34,27 @@ export default function SimulacionPago() {
     setTimeout(() => {
       setEstadoPago("Pagado ✅");
     }, 2000);
+
+    // Enviar datos al backend
+    try {
+      const response = await fetch("http://localhost:3000/ordenes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...datos,
+          productos: items,
+        }),
+      });
+      if (response.ok) {
+        setTimeout(() => {
+          setEstadoPago("Pagado ✅");
+        }, 2000);
+      } else {
+        setEstadoPago("Error al guardar la orden");
+      }
+    } catch (error) {
+      setEstadoPago("Error de conexión");
+    }
   };
 
   function limpiarCarrito() {
