@@ -6,6 +6,7 @@ export interface CartItem {
   image: string;
   quantity: number;
   price: number;
+  size: number;
 }
 
 // Función para obtener los items del localStorage
