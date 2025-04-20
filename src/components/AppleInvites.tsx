@@ -127,10 +127,11 @@ export default function AppleInvites() {
       title: event.title,
       image: cartImage, // Aquí pasamos la imagen de products
       price: event.price,
+      size: 0, // Puedes ajustar esto según tu lógica
     });
   };
 
-  const alertProduct = (event: Event) => {  
+  const alertProduct = (event: Event) => {
     try {
       handleAddToCart(event);
       alert("Producto agregado al carrito 🛒");
@@ -139,83 +140,83 @@ export default function AppleInvites() {
     }
   };
 
-return (
-  <div className="hidden md:block p-6 ">
-    <div className="bg-gray-900 rounded-xl">
-      <div className="relative flex min-h-screen w-full items-center justify-center">
-        <AnimatePresence initial={false} custom={direction}>
-          {visibleEvents.map((event, index) => (
-            <motion.div
-              key={event.id}
-              custom={direction}
-              variants={variants}
-              initial="hidden"
-              animate={
-                index === 1 ? "center" : index === 0 ? "left" : "right"
-              }
-              exit="hidden"
-              className="absolute top-1/2 left-1/2 h-[160px] w-[120px] origin-center -translate-y-1/2 
+  return (
+    <div className="hidden md:block p-6 ">
+      <div className="bg-gray-900 rounded-xl">
+        <div className="relative flex min-h-screen w-full items-center justify-center">
+          <AnimatePresence initial={false} custom={direction}>
+            {visibleEvents.map((event, index) => (
+              <motion.div
+                key={event.id}
+                custom={direction}
+                variants={variants}
+                initial="hidden"
+                animate={
+                  index === 1 ? "center" : index === 0 ? "left" : "right"
+                }
+                exit="hidden"
+                className="absolute top-1/2 left-1/2 h-[160px] w-[120px] origin-center -translate-y-1/2 
               md:h-[400px] md:w-[240px] 
               lg:h-[490px] lg:w-[300px] 
               xl:h-[740px] xl:w-[430px]"
-              {...handleSwipe}
-            >
-              <div className="relative h-full w-full overflow-hidden rounded-3xl">
-                <img
-                  src={event.image || "/placeholder.svg"}
-                  alt={event.title}
-                  className="h-full w-full object-cover"
-                />
+                {...handleSwipe}
+              >
+                <div className="relative h-full w-full overflow-hidden rounded-3xl">
+                  <img
+                    src={event.image || "/placeholder.svg"}
+                    alt={event.title}
+                    className="h-full w-full object-cover"
+                  />
 
-                {/* Badge */}
-                <div className="absolute top-4 left-4 z-3">
-                  <span className="flex flex-row items-center gap-2 rounded-full bg-black/30 px-3 py-1 text-xs font-medium text-white backdrop-blur-xl sm:text-sm">
-                    <Crown size={14} />
-                    {event.badge}
-                  </span>
-                </div>
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4 z-3">
+                    <span className="flex flex-row items-center gap-2 rounded-full bg-black/30 px-3 py-1 text-xs font-medium text-white backdrop-blur-xl sm:text-sm">
+                      <Crown size={14} />
+                      {event.badge}
+                    </span>
+                  </div>
 
-                {/* Content */}
-                <div className="absolute bottom-0 z-3 w-full overflow-hidden rounded-b-3xl p-6 text-white">
-                  <p
-                    className="text-sm mb-2.5 text-center font-bold 
+                  {/* Content */}
+                  <div className="absolute bottom-0 z-3 w-full overflow-hidden rounded-b-3xl p-6 text-white">
+                    <p
+                      className="text-sm mb-2.5 text-center font-bold 
                   md:text-base lg:text-lg xl:text-xl"
-                  >
-                    {event.title}
-                  </p>
-                  {/* Mostrar el precio */}
-                  <p
-                    className="text-xs mb-2.5 text-center font-bold 
-                  md:text-sm lg:text-base xl:text-lg"
-                  >
-                    €{event.price.toFixed(2)}
-                  </p>
-                  {/* Button */}
-                  <div className="text-center text-xs opacity-90">
-                    <button                    
-                      onClick={() => alertProduct(event)}
-                      className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs md:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-400 via-indigo-500 to-pink-200 group-hover:from-purple-400 group-hover:via-indigo-400 group-hover:to-pink-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 dark:focus:ring-indigo-500"
                     >
-                      <span className="relative px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
-                        Add to cart
-                      </span>
-                    </button>
+                      {event.title}
+                    </p>
+                    {/* Mostrar el precio */}
+                    <p
+                      className="text-xs mb-2.5 text-center font-bold 
+                  md:text-sm lg:text-base xl:text-lg"
+                    >
+                      €{event.price.toFixed(2)}
+                    </p>
+                    {/* Button */}
+                    <div className="text-center text-xs opacity-90">
+                      <button
+                        onClick={() => alertProduct(event)}
+                        className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs md:text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-400 via-indigo-500 to-pink-200 group-hover:from-purple-400 group-hover:via-indigo-400 group-hover:to-pink-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-indigo-200 dark:focus:ring-indigo-500"
+                      >
+                        <span className="relative px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                          Add to cart
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="fixed inset-x-0 bottom-0 isolate z-2 h-1/2">
+                    <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[1px]"></div>
+                    <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[2px]"></div>
+                    <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[3px]"></div>
+                    <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[6px]"></div>
+                    <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[12px]"></div>
                   </div>
                 </div>
-
-                <div className="fixed inset-x-0 bottom-0 isolate z-2 h-1/2">
-                  <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[1px]"></div>
-                  <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[2px]"></div>
-                  <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[3px]"></div>
-                  <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[6px]"></div>
-                  <div className="gradient-mask-t-0 absolute inset-0 overflow-hidden rounded-3xl backdrop-blur-[12px]"></div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
