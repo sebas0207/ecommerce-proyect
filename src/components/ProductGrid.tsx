@@ -1,14 +1,47 @@
 import { useEffect, useState } from "react";
-import type { Product } from "../types";
+import type { Product, ProductFilters } from "../types";
 import { addToCart } from "../store/cart";
 
 interface ProductGridProps {
   products: Product[];
+  filters?: ProductFilters;
 }
 
 const availableSizes = [37, 38, 39, 40, 41, 42, 43, 44, 45];
 
-export default function ProductGrid({ products }: ProductGridProps) {
+function filterProducts(products: Product[], filters?: ProductFilters) {
+  if (!filters) return products;
+  return products.filter((product) => {
+    if (
+      filters.gender &&
+      filters.gender.length > 0 &&
+      (!product.gender || !filters.gender.includes(product.gender))
+    ) {
+      return false;
+    }
+    if (
+      filters.brand &&
+      filters.brand.length > 0 &&
+      (!product.brand || !filters.brand.includes(product.brand))
+    ) {
+      return false;
+    }
+    if (filters.price && filters.price.length > 0) {
+      let inRange = false;
+      for (const range of filters.price) {
+        if (range === "0-100" && product.price >= 0 && product.price <= 100)
+          inRange = true;
+        if (range === "100-200" && product.price > 100 && product.price <= 200)
+          inRange = true;
+        if (range === "200+" && product.price > 200) inRange = true;
+      }
+      if (!inRange) return false;
+    }
+    return true;
+  });
+}
+
+export default function ProductGrid({ products, filters }: ProductGridProps) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const productId =
@@ -57,9 +90,11 @@ export default function ProductGrid({ products }: ProductGridProps) {
     alert("Producto agregado al carrito 🛒");
   };
 
+  const filteredProducts = filterProducts(products, filters);
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 md:ml-80 md:mr-5 mb-8 px-4 sm:px-0 max-w-5xl md:max-w-none mx-auto">
-      {products.map((product) => (
+      {filteredProducts.map((product) => (
         <div
           key={product.id}
           id={String(product.id)}
