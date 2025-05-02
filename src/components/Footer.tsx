@@ -61,18 +61,14 @@ const Footer: React.FC = () => {
             {
               title: "Colecciones",
               links: [
-                { label: "Novedades", href: "/catalogo" },
-                { label: "Más Vendidos", href: "/catalogo" },
-                { label: "Zapatos de Mujer", href: "/catalogo" },
-                { label: "Zapatos de Hombre", href: "/catalogo" },
+                { label: "Zapatos de Mujer", href: "/catalogo?gender=Mujer" },
+                { label: "Zapatos de Hombre", href: "/catalogo?gender=Hombre" },
+                { label: "Zapatos UniSex", href : "/catalogo?gender=Unisex"},
               ],
             },
             {
               title: "Atención al Cliente",
               links: [
-                { label: "Guía de Tallas", href: "#" },
-                { label: "Envíos", href: "#" },
-                { label: "Devoluciones", href: "#" },
                 { label: "Contacto", href: "#" },
               ],
             },
@@ -80,9 +76,6 @@ const Footer: React.FC = () => {
               title: "Empresa",
               links: [
                 { label: "Sobre Nosotros", href: "#" },
-                { label: "Trabaja con Nosotros", href: "#" },
-                { label: "Sostenibilidad", href: "#" },
-                { label: "Blog", href: "#" },
               ],
             },
           ].map((section, i) => (
