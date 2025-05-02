@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Aside from "./Aside";
 import ProductGrid from "./ProductGrid";
 import { products } from "../store/products";
@@ -7,6 +7,15 @@ import FiltrosMobile from "./FiltrosMobile";
 
 const CatalogIsland: React.FC = () => {
   const [filters, setFilters] = useState<ProductFilters>({});
+
+  // Capturar parámetros de la URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const gender = params.get('gender');
+    if (gender) {
+      setFilters(prev => ({ ...prev, gender: [gender] }));
+    }
+  }, []);
 
   return (
     <>
