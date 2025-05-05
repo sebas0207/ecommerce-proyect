@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
               {["Facebook", "Instagram", "Twitter"].map((name, i) => (
                 <a
                   key={i}
-                  href="/info"
+                  href="/"
                   className="text-gray-600 hover:text-red-600 transition-colors"
                 >
                   <img
