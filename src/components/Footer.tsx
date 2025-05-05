@@ -61,14 +61,18 @@ const Footer: React.FC = () => {
             {
               title: "Colecciones",
               links: [
-                { label: "Zapatos de Mujer", href: "/catalogo?gender=Mujer" },
-                { label: "Zapatos de Hombre", href: "/catalogo?gender=Hombre" },
-                { label: "Zapatos UniSex", href : "/catalogo?gender=Unisex"},
+                { label: "Novedades", href: "/catalogo" },
+                { label: "Más Vendidos", href: "/catalogo" },
+                { label: "Zapatos de Mujer", href: "/catalogo" },
+                { label: "Zapatos de Hombre", href: "/catalogo" },
               ],
             },
             {
               title: "Atención al Cliente",
               links: [
+                { label: "Guía de Tallas", href: "#" },
+                { label: "Envíos", href: "#" },
+                { label: "Devoluciones", href: "#" },
                 { label: "Contacto", href: "#" },
               ],
             },
@@ -76,6 +80,9 @@ const Footer: React.FC = () => {
               title: "Empresa",
               links: [
                 { label: "Sobre Nosotros", href: "#" },
+                { label: "Trabaja con Nosotros", href: "#" },
+                { label: "Sostenibilidad", href: "#" },
+                { label: "Blog", href: "#" },
               ],
             },
           ].map((section, i) => (
@@ -107,7 +114,7 @@ const Footer: React.FC = () => {
               {["Facebook", "Instagram", "Twitter"].map((name, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href="/info"
                   className="text-gray-600 hover:text-red-600 transition-colors"
                 >
                   <img
@@ -127,19 +134,19 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex gap-6">
             <a
-              href="#"
+              href="/info#terminos"
               className="text-gray-600 hover:text-red-600 transition-colors"
             >
               Términos
             </a>
             <a
-              href="#"
+              href="/info#privacidad"
               className="text-gray-600 hover:text-red-600 transition-colors"
             >
               Privacidad
             </a>
             <a
-              href="#"
+              href="/info#cookies"
               className="text-gray-600 hover:text-red-600 transition-colors"
             >
               Cookies
