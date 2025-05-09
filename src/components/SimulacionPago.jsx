@@ -38,13 +38,12 @@ export default function SimulacionPago() {
     // Enviar datos al backend
     try {
       const response = await fetch(
-        "https://backend-neonvibe.onrender.com/ordenes",
+        "http://localhost:3000/ordenes",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...datos,
-            productos: items,
           }),
         }
       );
